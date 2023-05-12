@@ -1,11 +1,24 @@
-import kotlin.test.assertEquals
+import com.github.paczek9000.infrastructure.TestProperties
+import com.github.paczek9000.infrastructure.profileresolver.SystemActivePropertyProfileResolver
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.test.context.ActiveProfiles
+import org.testng.annotations.BeforeTest
+import org.testng.annotations.Test
 
-class SampleTest : BaseTest() {
+@ActiveProfiles(value = ["rd"], resolver = SystemActivePropertyProfileResolver::class)
+@Test
+class SampleTest : TestDependencies() {
 
-    fun tc1(){
-        val page = ToolsAndTavernsPage(getDriver())
-        page.goto()
+    @Autowired
+    val testProperties : TestProperties? = null
+    @BeforeTest
+    protected fun setupTest(){
+        super.springTestContextPrepareTestInstance();
+    }
 
-        assertEquals(getDriver().currentUrl, "https://www.toolsandtaverns.com/123")
+
+    @Test
+    fun tc1_springConfigurationContainsEnvProperties(){
+        println(testProperties!!.gridOn)
     }
 }

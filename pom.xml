@@ -8,6 +8,10 @@
   <packaging>jar</packaging>
 
   <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+
+    <java.version>17</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <kotlin.version>1.8.21</kotlin.version>
     <kotlin.code.style>official</kotlin.code.style>
@@ -41,7 +45,17 @@
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
       <version>RELEASE</version>
-      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <version>3.0.6</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <version>3.0.6</version>
     </dependency>
 
   </dependencies>
@@ -52,6 +66,12 @@
     <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
 
     <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>3.0.6</version>
+
+      </plugin>
 
       <plugin>
         <groupId>org.jetbrains.kotlin</groupId>
@@ -73,7 +93,36 @@
             </goals>
           </execution>
         </executions>
+
+        <configuration>
+          <compilerPlugins>
+            <plugin>jpa</plugin>
+            <plugin>spring</plugin>
+          </compilerPlugins>
+          <args>
+            <arg>-Xjsr305=strict</arg>
+          </args>
+
+        </configuration>
+
+        <dependencies>
+          <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-maven-noarg</artifactId>
+            <version>${kotlin.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-maven-allopen</artifactId>
+            <version>${kotlin.version}</version>
+          </dependency>
+        </dependencies>
+
       </plugin>
+
+
+
+
     </plugins>
   </build>
 
