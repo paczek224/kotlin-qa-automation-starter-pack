@@ -7,5 +7,13 @@ import org.springframework.stereotype.Component
 @ConfigurationProperties(prefix = "test")
 class TestProperties {
 
-    var gridOn: Boolean? = false
+    val gridOn: Boolean? = false
+    val timeoutInSeconds: Long = 10
+    val port: Int = 443
+    lateinit var gridUrl: String
+    lateinit var protocol: String
+    lateinit var appFile: String
+    lateinit var mockLoginUrl: String
+    lateinit var host: String
 }
+

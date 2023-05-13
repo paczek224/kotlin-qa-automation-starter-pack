@@ -6,6 +6,6 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 @EnableConfigurationProperties
-@ComponentScan(value = ["com.github.*"])
+@ComponentScan(value = ["com.github"])
 class TestApplicationContext {
 }

@@ -6,7 +6,7 @@ import org.springframework.test.context.support.DefaultActiveProfilesResolver
 class SystemActivePropertyProfileResolver : ActiveProfilesResolver {
 
     @JvmField
-    var defaultResolver = DefaultActiveProfilesResolver();
+    var defaultResolver = DefaultActiveProfilesResolver()
 
     override fun resolve(testClass: Class<*>): Array<String> {
         val profileKey = "spring.profiles.active"
@@ -15,3 +15,4 @@ class SystemActivePropertyProfileResolver : ActiveProfilesResolver {
             .toTypedArray() else defaultResolver.resolve(testClass)
     }
 }
+
